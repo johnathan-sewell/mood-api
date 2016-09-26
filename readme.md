@@ -1,5 +1,5 @@
 #Mood API
-A serverless API for the mood frontend app
+A [Serverless](https://serverless.com/) API for the mood frontend app
 
 ## Setting up for development/deploying
 
@@ -13,6 +13,8 @@ export AWS_SECRET_ACCESS_KEY=<secret>
 ## Deploying
 
 `npm run deploy`
+
+This just runs `serverless deploy`, and Serverless does it's magic.
 
 ## Logging
 
