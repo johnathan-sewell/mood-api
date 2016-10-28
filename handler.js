@@ -1,16 +1,20 @@
 'use strict';
 const aws = require('aws-sdk');
 
-const dynamo = new aws.DynamoDB.DocumentClient();
 const tableName = 'Moods';
 
 //POST users/:userid/moods
 exports.createMood = (event, context) => {
-    console.log('event', event);
+
+    const dynamo = new aws.DynamoDB.DocumentClient();
 
     const payload = {
         TableName: tableName,
-        Item: event.body
+        Item: {
+            userId: event.path.userid,
+            date: event.body.date,
+            mood: event.body.mood
+        }
     };
 
     dynamo.put(payload, (err, data) => {
@@ -24,7 +28,8 @@ exports.createMood = (event, context) => {
 
 //GET users/:userid/moods
 exports.getAllMoods = (event, context) => {
-    console.log('event', event);
+
+    const dynamo = new aws.DynamoDB.DocumentClient();
 
     const payload = {
         TableName: tableName,
